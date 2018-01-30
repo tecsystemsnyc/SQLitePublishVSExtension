@@ -33,6 +33,8 @@ namespace SQLiteInteropPublisher
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
     [Guid(OptionsPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
+    [ProvideOptionPage(typeof(OptionPageGrid),
+    "SQLite Interop Publishing", "My Grid Page", 0, 0, true)]
     public sealed class OptionsPackage : Package
     {
         /// <summary>
@@ -63,5 +65,10 @@ namespace SQLiteInteropPublisher
         }
 
         #endregion
+    }
+
+    public class OptionPageGrid : DialogPage
+    {
+        private string relative;
     }
 }
