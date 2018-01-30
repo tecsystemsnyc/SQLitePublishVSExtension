@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="SQLitePublish.8578132c-7941-45ad-8cc0-7cf4ab26d032" Version="1.0" Language="en-US" Publisher="Gregory Hanson" />
+    <Identity Id="SQLitePublish.7db7e039-b8a2-4c1b-84fa-5bda94302b6d" Version="1.0" Language="en-US" Publisher="Gregory Hanson" />
     <DisplayName>SQLitePublish</DisplayName>
     <Description>Empty VSIX Project.</Description>
   </Metadata>
@@ -10,12 +10,8 @@
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
-    <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0]" />
   </Dependencies>
   <Prerequisites>
     <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
   </Prerequisites>
-  <Assets>
-    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-  </Assets>
 </PackageManifest>
