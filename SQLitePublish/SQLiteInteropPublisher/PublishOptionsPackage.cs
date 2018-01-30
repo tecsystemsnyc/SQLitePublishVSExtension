@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.Diagnostics.CodeAnalysis;
@@ -31,21 +32,31 @@ namespace SQLiteInteropPublisher
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = true)]
     [InstalledProductRegistration("#110", "#112", "1.0", IconResourceID = 400)] // Info on this package for Help/About
-    [Guid(OptionsPackage.PackageGuidString)]
+    [Guid(PublishOptionsPackage.PackageGuidString)]
     [SuppressMessage("StyleCop.CSharp.DocumentationRules", "SA1650:ElementDocumentationMustBeSpelledCorrectly", Justification = "pkgdef, VS and vsixmanifest are valid VS terms")]
-    [ProvideOptionPage(typeof(OptionPageGrid),
-    "SQLite Interop Publishing", "My Grid Page", 0, 0, true)]
-    public sealed class OptionsPackage : Package
+    [ProvideOptionPage(typeof(PublishOptionsPageGrid),
+    "SQLite Interop Publishing", "Options", 0, 0, true)]
+    [ProvideMenuResource("Menus.ctmenu", 1)]
+    public sealed class PublishOptionsPackage : Package
     {
         /// <summary>
         /// OptionsPackage GUID string.
         /// </summary>
         public const string PackageGuidString = "e40b1870-4fb5-4e44-937c-f82d06fa0f7e";
 
+        public string PublishFolderPath
+        {
+            get
+            {
+                PublishOptionsPageGrid page = (PublishOptionsPageGrid)GetDialogPage(typeof(PublishOptionsPageGrid));
+                return page.PublishFolderPath;
+            }
+        }
+
         /// <summary>
-        /// Initializes a new instance of the <see cref="OptionsPackage"/> class.
+        /// Initializes a new instance of the <see cref="PublishOptionsPackage"/> class.
         /// </summary>
-        public OptionsPackage()
+        public PublishOptionsPackage()
         {
             // Inside this method you can place any initialization code that does not require
             // any Visual Studio service because at this point the package object is created but
@@ -62,13 +73,23 @@ namespace SQLiteInteropPublisher
         protected override void Initialize()
         {
             base.Initialize();
+            PublishCommand.Initialize(this);
         }
 
         #endregion
     }
 
-    public class OptionPageGrid : DialogPage
+    public class PublishOptionsPageGrid : DialogPage
     {
-        private string relative;
+        private string _publishFolderPath = "";
+
+        [Category("SQLite Interop Publishing")]
+        [DisplayName("Publish Folder Path")]
+        [Description("Folder where x86 and x64 folders are located.")]
+        public string PublishFolderPath
+        {
+            get { return _publishFolderPath; }
+            set { _publishFolderPath = value; }
+        }
     }
 }
