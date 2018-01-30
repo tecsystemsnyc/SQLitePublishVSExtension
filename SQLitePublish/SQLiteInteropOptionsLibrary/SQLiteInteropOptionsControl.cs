@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SQLiteInteropOptionsLibrary
 {
-    public partial class UserControl1: UserControl
+    public partial class SQLiteInteropOptionsControl: UserControl
     {
-        public UserControl1()
+        public SQLiteInteropOptionsControl()
         {
             InitializeComponent();
         }
