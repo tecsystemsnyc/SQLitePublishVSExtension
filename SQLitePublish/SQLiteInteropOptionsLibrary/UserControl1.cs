@@ -7,13 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.VisualStudio.Editors.PropertyPages;
 
-namespace SQLitePublish
+namespace SQLiteInteropOptionsLibrary
 {
-    public partial class SQLiteInteropPropertyControl : PropPageUserControlBase
+    public partial class UserControl1: UserControl
     {
-        public SQLiteInteropPropertyControl()
+        public UserControl1()
         {
             InitializeComponent();
         }
