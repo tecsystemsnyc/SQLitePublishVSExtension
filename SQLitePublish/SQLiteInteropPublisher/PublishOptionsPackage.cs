@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
 using System.Diagnostics;
@@ -39,6 +40,14 @@ namespace SQLiteInteropPublisher
     [ProvideMenuResource("Menus.ctmenu", 1)]
     public sealed class PublishOptionsPackage : Package
     {
+        private PublishOptionsPageGrid page
+        {
+            get
+            {
+                return (PublishOptionsPageGrid)GetDialogPage(typeof(PublishOptionsPageGrid));
+            }
+        }
+
         /// <summary>
         /// OptionsPackage GUID string.
         /// </summary>
@@ -48,8 +57,14 @@ namespace SQLiteInteropPublisher
         {
             get
             {
-                PublishOptionsPageGrid page = (PublishOptionsPageGrid)GetDialogPage(typeof(PublishOptionsPageGrid));
                 return page.PublishFolderPath;
+            }
+        }
+        public string[] ProjectNames
+        {
+            get
+            {
+                return page.ProjectNames;
             }
         }
 
@@ -82,6 +97,8 @@ namespace SQLiteInteropPublisher
     public class PublishOptionsPageGrid : DialogPage
     {
         private string _publishFolderPath = "";
+        private string[] _projectNames = new string[0];
+
 
         [Category("SQLite Interop Publishing")]
         [DisplayName("Publish Folder Path")]
@@ -90,6 +107,15 @@ namespace SQLiteInteropPublisher
         {
             get { return _publishFolderPath; }
             set { _publishFolderPath = value; }
+        }
+
+        [Category("SQLite Interop Publishing")]
+        [DisplayName("Project Names")]
+        [Description("Names of startup projects to publish.")]
+        public string[] ProjectNames
+        {
+            get { return _projectNames; }
+            set { _projectNames = value; }
         }
     }
 }

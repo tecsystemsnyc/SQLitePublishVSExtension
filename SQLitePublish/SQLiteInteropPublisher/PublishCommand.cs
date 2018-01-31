@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.Design;
 using System.Globalization;
+using System.Windows.Forms;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Shell.Interop;
 
@@ -87,6 +88,28 @@ namespace SQLiteInteropPublisher
         /// <param name="e">Event args.</param>
         private void MenuItemCallback(object sender, EventArgs e)
         {
+            IVsSolution solution = ServiceProvider.GetService(typeof(SVsSolution)) as IVsSolution;
+            if (solution == null)
+            {
+                MessageBox.Show("No solution found.");
+                return;
+            }
+
+            //Set configuration settings
+
+            //Include sqlite interop
+
+            //Publish
+
+
+
+
+
+
+
+
+
+
             PublishOptionsPackage package = this.package as PublishOptionsPackage;
 
             string path = package.PublishFolderPath;
